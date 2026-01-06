@@ -19,6 +19,14 @@ Statische Seite – kann auf jedem Webserver oder GitHub Pages gehostet werden.
 - Aktiviere in den Repository-Settings unter "Pages" die Quelle `Deploy from a branch` → `main` → `/ (root)`.
 - Die Seite ist anschließend unter `https://<org-or-user>.github.io/ct-registrierung/` erreichbar.
 
+## Drucken
+
+Diese Seite enthält eine optimierte **Druckansicht** (A4):
+
+- Klicke oben auf den Button **„Drucken“** oder nutze `Cmd + P` (macOS) / `Strg + P` (Windows)
+- Saubere weiße Seiten, keine Schatten, klare Umbrüche zwischen Schritten
+- FAQ‑Antworten sind in der Druckversion automatisch geöffnet
+
 ## Struktur
 
 ```

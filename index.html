@@ -261,6 +261,18 @@
             margin-right: 10px;
         }
 
+        .print-only { display: none; }
+        .print-toolbar { text-align: right; margin-top: 10px; }
+        .print-button {
+            background: #222;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
@@ -282,6 +294,29 @@
                 font-size: 1.1em;
             }
         }
+
+        /* Print styles for clean A4 output */
+        @media print {
+            @page { size: A4; margin: 12mm; }
+            body { background: #fff !important; padding: 0 !important; }
+            .container { box-shadow: none !important; border-radius: 0 !important; }
+            header { background: #fff !important; color: #000 !important; padding: 0 0 8mm 0; text-align: left; border-bottom: 2px solid #000; }
+            header h1 { text-shadow: none !important; font-size: 22pt; }
+            header p { color: #333; font-size: 12pt; }
+            .content { padding: 0; }
+            .intro { background: #fff !important; border-left: 0; padding: 0; margin: 8mm 0; }
+            .step { box-shadow: none !important; border: 1px solid #999; page-break-inside: avoid; break-inside: avoid; }
+            .steps .step { margin-bottom: 10mm; }
+            .step-number { background: #000 !important; color: #fff !important; }
+            .cta-button, .print-toolbar, .toggle-icon { display: none !important; }
+            .faq-item p { display: block !important; }
+            .faq-item { border: 1px solid #999; }
+            .section-divider { background: #000; }
+            .contact-section { border-color: #000; background: #fff; }
+            a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #333; }
+            footer { background: #fff; color: #000; border-top: 1px solid #000; }
+            .print-only { display: block !important; }
+        }
     </style>
 </head>
 <body>
@@ -289,6 +324,12 @@
         <header>
             <h1>🙏 ChurchTools Registrierung</h1>
             <p>Einfache Anleitung für die Anmeldung</p>
+            <div class="print-toolbar">
+                <button id="printBtn" class="print-button">Drucken</button>
+            </div>
+            <div class="print-only" aria-hidden="true" style="margin-top:6px; font-size: 10pt;">
+                Quelle: https://github.com/osdt-tech/ct-registrierung • Stand: <span id="printDate"></span>
+            </div>
         </header>
 
         <div class="content">
@@ -550,6 +591,17 @@
                 parent.classList.toggle('active');
             });
         });
+
+        // Print helpers
+        const printBtn = document.getElementById('printBtn');
+        if (printBtn) {
+            printBtn.addEventListener('click', () => window.print());
+        }
+        const pd = document.getElementById('printDate');
+        if (pd) {
+            const d = new Date();
+            pd.textContent = d.toLocaleDateString('de-DE');
+        }
     </script>
 </body>
 </html>
