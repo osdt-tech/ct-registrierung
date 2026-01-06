@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChurchTools Registrierung - Einfache Anmeldung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .intro {
+            background: #f0f4ff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            border-left: 8px solid #667eea;
+        }
+
+        .intro p {
+            font-size: 1.25em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .steps {
+            display: grid;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .step {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border: 3px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .step h2 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .step p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #764ba2;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+        }
+
+        .highlight strong {
+            color: #856404;
+            font-size: 1.1em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 50px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-section {
+            background: #f0f4ff;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 50px;
+            text-align: center;
+            border: 3px solid #667eea;
+        }
+
+        .contact-section h3 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .contact-info strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .faq-section {
+            margin-top: 50px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border: 0;
+            margin: 50px 0 30px;
+        }
+
+        .store-links a {
+            display: inline-block;
+            margin-right: 12px;
+            margin-bottom: 8px;
+            background: #111;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .faq-item {
+            background: #f9f9f9;
+            padding: 25px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #764ba2;
+        }
+
+        .faq-item h4 {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 1.1em;
+        }
+
+        .success-icon {
+            color: #28a745;
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .step {
+                padding: 20px;
+            }
+
+            .step h2 {
+                font-size: 1.4em;
+            }
+
+            .step p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🙏 ChurchTools Registrierung</h1>
+            <p>Einfache Anleitung für die Anmeldung</p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <p><strong>Willkommen!</strong></p>
+                <p>Diese Anleitung zeigt Ihnen Schritt für Schritt, wie Sie sich bei ChurchTools anmelden können. Folgen Sie den Schritten sorgfältig - es ist einfacher, als Sie vielleicht denken!</p>
+            </div>
+
+            <div class="steps">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h2>E-Mail erhalten</h2>
+                    <div class="step-content">
+                        <p>Sie erhalten eine E-Mail mit einem <strong>Registrierungslink</strong> von der Gemeinde.</p>
+                        <p style="margin: 20px 0; text-align: center;">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f0f4ff' width='400' height='300'/%3E%3Ctext x='20' y='40' font-size='16' font-weight='bold' fill='%23333'%3EE-Mail: Registrierung per E-Mail%3C/text%3E%3Ctext x='20' y='70' font-size='14' fill='%23666'%3EVon: noreply@churchtools.de%3C/text%3E%3Ctext x='20' y='100' font-size='13' fill='%23555'%3EHallo Person,%3C/text%3E%3Ctext x='20' y='130' font-size='13' fill='%23555'%3Edu wurdest zur Nutzung eingeladen.%3C/text%3E%3Ctext x='20' y='160' font-size='12' fill='%23667eea' text-decoration='underline'%3EChurchTools-Konto einrichten%3C/text%3E%3Ctext x='20' y='190' font-size='13' fill='%23555'%3E(Blauer Link zum Klicken)%3C/text%3E%3Crect x='20' y='220' width='360' height='40' fill='%23e8eef7' stroke='%23667eea' stroke-width='2' rx='5'/%3E%3Ctext x='30' y='245' font-size='12' fill='%23333'%3E📎 Mit freundlichen Grüßen,%3C/text%3E%3Ctext x='30' y='265' font-size='12' fill='%23333'%3EDein ChurchTools Team%3C/text%3E%3C/svg%3E" alt="E-Mail Screenshot" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"/>
+                        </p>
+                        <div class="highlight">
+                            <strong>💡 Tipp:</strong> Schauen Sie auch im Spam-Ordner nach, wenn Sie die E-Mail nicht im Posteingang finden.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h2>Auf den Link klicken</h2>
+                    <div class="step-content">
+                        <p>Klicken Sie auf den Link in der E-Mail, auf dem "ChurchTools-Konto einrichten" steht.</p>
+                        <div class="highlight">
+                            <strong>⚠️ Wichtig:</strong> Dieser Link funktioniert nur einmal und nur für eine begrenzte Zeit. Verwenden Sie ihn daher direkt.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h2>Passwort einrichten</h2>
+                    <div class="step-content">
+                        <p>Sie sehen das Formular "Passwort einrichten". Füllen Sie die folgenden Felder aus:</p>
+                        <ul style="font-size: 1.2em; line-height: 2; color: #555; margin: 20px 0; margin-left: 20px;">
+                            <li><strong>Neues Passwort:</strong> Geben Sie Ihr Passwort ein</li>
+                            <li><strong>Neues Passwort bestätigen:</strong> Geben Sie das gleiche Passwort erneut ein</li>
+                        </ul>
+                        <p style="font-size: 1.1em; color: #555; margin: 20px 0;"><strong>Ihr Passwort muss folgende Anforderungen erfüllen:</strong></p>
+                        <ul style="font-size: 1.1em; line-height: 2; color: #667eea; margin: 15px 0; margin-left: 30px;">
+                            <li>✓ Mindestens 8 Zeichen</li>
+                            <li>✓ Mindestens eine Ziffer (0-9)</li>
+                            <li>✓ Groß- und Kleinbuchstaben (A-Z und a-z)</li>
+                            <li>✓ Der eigene Name darf nicht enthalten sein</li>
+                        </ul>
+                        <div class="highlight">
+                            <strong>💡 Beispiel eines guten Passworts:</strong> MeinGarten2024! oder Sonnenschein123
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h2>Bedingungen akzeptieren</h2>
+                    <div class="step-content">
+                        <p>Auf der nächsten Seite sehen Sie wichtige Informationen über Datenschutz und Nutzungsbedingungen.</p>
+                        <p style="font-size: 1.1em; color: #555; margin: 20px 0;"><strong>Das müssen Sie tun:</strong></p>
+                        <ul style="font-size: 1.2em; line-height: 2; color: #555; margin: 20px 0; margin-left: 20px;">
+                            <li>☑️ Lesen Sie die Bedingungen (oder scrollen Sie nach unten)</li>
+                            <li>☑️ Aktivieren Sie das Kontrollkästchen am Ende</li>
+                            <li>☑️ Klicken Sie auf den blauen Button "Vereinbarung akzeptieren"</li>
+                        </ul>
+                        <div class="highlight">
+                            <strong>ℹ️ Info:</strong> Diese Bedingungen schützen sowohl Sie als auch die Gemeinde. Es ist wichtig, diese zu akzeptieren.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h2>Zur Anmeldeseite gehen</h2>
+                    <div class="step-content">
+                        <p>Nachdem Sie Ihr Passwort eingerichtet und die Bedingungen akzeptiert haben, gehen Sie zur Anmeldeseite:</p>
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; border: 3px solid #667eea; text-align: center;">
+                            <a href="https://bbgbo.church.tools" target="_blank" style="font-size: 1.3em; color: #667eea; font-weight: bold; text-decoration: none;">https://bbgbo.church.tools</a>
+                        </div>
+                        <div class="highlight">
+                            <strong>💡 Tipp:</strong> Sie können diese Adresse auch in Google eingeben oder ein Lesezeichen setzen, damit Sie sie leicht wiederfinden.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h2>Anmelden und fertig!</h2>
+                    <div class="step-content">
+                        <p>Auf der Anmeldeseite sehen Sie zwei Felder:</p>
+                        <ul style="font-size: 1.2em; line-height: 2.5; color: #555; margin: 20px 0; margin-left: 20px;">
+                            <li><strong>E-Mail-Adresse oder Benutzername:</strong> Die E-Mail, die Sie bei der Registrierung verwendet haben</li>
+                            <li><strong>Passwort:</strong> Das Passwort, das Sie eingerichtet haben</li>
+                        </ul>
+                        <p style="font-size: 1.2em; color: #555; margin: 20px 0;">Klicken Sie auf den großen <strong>blauen Button "Einloggen"</strong></p>
+                        <div class="highlight">
+                            <strong>✅ Erfolg:</strong> Sie sehen jetzt die ChurchTools-Startseite mit Terminen, Gruppen, Besprechungen und vielem mehr!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="section-divider" aria-hidden="true" />
+
+            <div class="steps" id="app-anleitung">
+                <div class="step" style="border-color:#0ea5e9;">
+                    <div class="step-number">📱</div>
+                    <h2>ChurchTools App (Android & iOS)</h2>
+                    <div class="step-content" style="border-left-color:#0ea5e9;">
+                        <p>So meldest du dich in der <strong>ChurchTools App</strong> an. Diese Schritte sind für Android und iPhone identisch.</p>
+                        <div class="store-links" aria-label="App Stores">
+                            <a href="https://play.google.com/store/search?q=ChurchTools&c=apps" target="_blank" rel="noopener">▶ Google Play</a>
+                            <a href="https://apps.apple.com/de/search?term=ChurchTools" target="_blank" rel="noopener"> App Store</a>
+                        </div>
+                        <div class="highlight">
+                            <strong>Wichtig:</strong> In der App bitte <strong>Enter URL</strong> wählen (nicht „Show churches near me“). Alternativ funktioniert auch „Login via QR‑Code“.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App Step A1 -->
+                <div class="step">
+                    <div class="step-number">A1</div>
+                    <h2>App öffnen</h2>
+                    <div class="step-content">
+                        <p>Öffne die <strong>ChurchTools</strong>‑App auf deinem Handy.</p>
+                        <p style="text-align:center; margin:16px 0;">
+                            <img alt="Start der ChurchTools App" style="max-width:100%; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,.1);" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='200'%3E%3Crect width='360' height='200' fill='%23f4f6fb'/%3E%3Ctext x='20' y='40' font-size='18' fill='%23333' font-weight='bold'%3EChurchTools App%3C/text%3E%3Ctext x='20' y='80' font-size='14' fill='%23666'%3EStartbildschirm (Beispieldarstellung)%3C/text%3E%3C/svg%3E" />
+                        </p>
+                    </div>
+                </div>
+
+                <!-- App Step A2 -->
+                <div class="step">
+                    <div class="step-number">A2</div>
+                    <h2>„Enter URL“ auswählen</h2>
+                    <div class="step-content">
+                        <p>Tippe unten auf <strong>Enter URL</strong>. So gelangst du zum Eingabefeld für die Gemeinde‑Adresse.</p>
+                        <div class="highlight"><strong>Tipp:</strong> „Show churches near me“ ist für die Ersteinstellung meist nicht geeignet.</div>
+                    </div>
+                </div>
+
+                <!-- App Step A3 -->
+                <div class="step">
+                    <div class="step-number">A3</div>
+                    <h2>Gemeinde‑Adresse eingeben</h2>
+                    <div class="step-content">
+                        <p>Gib <strong>bbgbo</strong> in das Feld vor <em>.church.tools</em> ein und tippe auf <strong>Next</strong>.</p>
+                        <ul style="font-size:1.1em; line-height:2; color:#555; margin: 12px 0 0 20px;">
+                            <li>Vollständige Adresse ist <strong>bbgbo.church.tools</strong></li>
+                            <li>Die App ergänzt <em>.church.tools</em> automatisch</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- App Step A4 -->
+                <div class="step">
+                    <div class="step-number">A4</div>
+                    <h2>Anmelden</h2>
+                    <div class="step-content">
+                        <p>Es erscheint die Login‑Seite deiner Gemeinde. Gib deine <strong>E‑Mail/Benutzername</strong> und dein <strong>Passwort</strong> ein und tippe auf <strong>Login</strong>.</p>
+                        <div class="highlight"><strong>Passwort vergessen?</strong> Tippe auf „Forgot Password?“/„Passwort vergessen?“ und folge den Hinweisen.</div>
+                    </div>
+                </div>
+
+                <!-- App Step A5 -->
+                <div class="step">
+                    <div class="step-number">A5</div>
+                    <h2>Fertig – Startseite</h2>
+                    <div class="step-content">
+                        <p>Nach erfolgreichem Login siehst du die Startseite. Ab jetzt kannst du Termine, Gruppen und Nachrichten bequem am Handy nutzen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2 style="font-size: 2em; color: #333; margin-bottom: 30px; text-align: center;">❓ Häufig gestellte Fragen</h2>
+                
+                <div class="faq-item">
+                    <h4>
+                        Was ist ChurchTools?
+                        <span class="toggle-icon">▼</span>
+                    </h4>
+                    <p>ChurchTools ist eine Online-Plattform der Gemeinde, auf der Sie Informationen erhalten, an Veranstaltungen teilnehmen und Ihr Gemeindeprofil verwalten können.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>
+                        Ich habe die E-Mail nicht erhalten - was kann ich tun?
+                        <span class="toggle-icon">▼</span>
+                    </h4>
+                    <p>Schauen Sie bitte in Ihrem Spam- oder Junk-Ordner nach. Wenn Sie die E-Mail immer noch nicht finden, kontaktieren Sie die Gemeinde über die E-Mail-Adresse am Ende dieser Seite.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>
+                        Ich habe mein Passwort vergessen - was kann ich tun?
+                        <span class="toggle-icon">▼</span>
+                    </h4>
+                    <p>Klicken Sie auf der Anmeldeseite auf "Passwort vergessen?" und folgen Sie den Anweisungen. Sie erhalten eine E-Mail zum Zurücksetzen Ihres Passworts.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>
+                        Ist meine Anmeldung sicher?
+                        <span class="toggle-icon">▼</span>
+                    </h4>
+                    <p>Ja! ChurchTools verwendet moderne Sicherheitstechnologie (SSL-Verschlüsselung). Ihre Daten sind geschützt. Teilen Sie Ihr Passwort jedoch nie mit anderen.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>
+                        Kann ich mein Profil später ändern?
+                        <span class="toggle-icon">▼</span>
+                    </h4>
+                    <p>Ja! Nach der Anmeldung können Sie Ihr Profil jederzeit bearbeiten, Ihre Daten aktualisieren und Ihre Einstellungen ändern.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>
+                        Was ist, wenn ich einen Fehler gemacht habe?
+                        <span class="toggle-icon">▼</span>
+                    </h4>
+                    <p>Keine Sorge! Sie können die meisten Fehler leicht korrigieren. Wenn etwas nicht funktioniert, zögern Sie nicht, die Gemeinde zu kontaktieren.</p>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h3>Sie benötigen Hilfe?</h3>
+                <p>Wenn Sie weitere Fragen haben oder bei der Registrierung auf Probleme stoßen, kontaktieren Sie uns gerne:</p>
+                
+                <div class="contact-info">
+                    <p>Wende dich an Person XY</p>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <p style="margin-top: 15px; font-size: 0.9em;">Diese Anleitung wurde erstellt, um die Registrierung zu vereinfachen.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Make FAQ items interactive
+        document.querySelectorAll('.faq-item h4').forEach(item => {
+            item.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
